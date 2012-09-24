@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script data-main="js/app" src="js/lib/require.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+  </head>
+  <body>
+    <header id="toolbar" class="ui-layout-north">
+      <input id="search" type="text" placeholder="Search your contacts" />
+      <button id="addContact">
+        Add Contact
+      </button>
+      <div id="menuButton">
+        <img src="imgs/toolbarButton-menu.png" />
+      </div>
+    </header>
+
+    <div id="contactsListPane">
+      <ol id="contactsList">
+      </ol>
+    </div>
+    <div id="detailPane">
+      <div id="details">
+      </div>
+    </div>
+  </body>
+
+  <script id="contact-list-tmpl" type="text/template">
+    <div class="contact-list-item">
+      <img class="avatar" src="imgs/contact-generic.png" />
+      <strong><span class="name"><%= name %></span></strong>
+    </div>
+  </script>
+
+  <script id="contact-detail-tmpl" type="text/template">
+    <dl class="contact-details">
+    <dt>Name</dt> <dd><strong><span class="name"><%= name %></span></strong></dd>
+    <dt>Email addresses</dt> <dd><span class="email"><% _.each(email, function(address, i) { %>
+      <span class="address"><%= address %></span><% if (i < email.length - 1) { %>,<% } %>
+      <% }); %></span></dd>
+    </dl>
+  </script>
+
+</html>

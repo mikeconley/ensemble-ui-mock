@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Segoe UI,Verdana,sans-serif;
+}
+
+#toolbar {
+  background: #DEECFA;
+  padding: 5px;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+#menuButton {
+  float: right;
+  padding: 5px;
+  border: 1px solid #DEECFA;
+}
+
+#contactsListPane {
+  overflow: auto;
+  position: absolute;
+  top: 42px;
+  left: 0px;
+  right: 0px;
+  width: 310px;
+  bottom: 0px;
+  border-right: 1px solid #DDDDDD;
+}
+
+#detailPane {
+  overflow: auto;
+  position: absolute;
+  top: 42px;
+  left: 310px;
+  bottom: 0px;
+  right: 0px;
+}
+
+#search {
+  border: 1px solid rgba(23, 51, 78, 0.3);
+  width: 294px;
+  padding: 5px;
+}
+
+#addContact {
+  padding: 3px;
+}
+
+#splitter {
+  border: 1px solid black;
+  height: 600px;
+}
+#splitter div {
+  overflow: auto;
+}
+.vsplitbar {
+  width: 5px;
+  background: #aaa;
+}
+
+#contactsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list-item {
+  padding: 10px;
+  border-bottom: 1px solid #EEEEEE;
+  margin-bottom: 2px;
+}
+
+.ui-selected {
+  background: #6495ED;
+  color: white;
+}
+
+.ui-selecting {
+  background: #6495ED;
+}
+
+.avatar {
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+}
