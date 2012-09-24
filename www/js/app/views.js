@@ -1,6 +1,30 @@
 define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone, models) {
 
-  var ContactView = Backbone.View.extend({
+  var TimeoutQueue = function() {
+    this._queue = [];
+    this._finishedCallback = null;
+  };
+  TimeoutQueue.prototype = {
+    addJob: function(aJobFunction) {
+      this._queue.push(aJobFunction);
+    },
+    start: function(aCallback) {
+      this._finishedCallback = aCallback;
+      this._queue.reverse();
+      this._tick();
+    },
+    _tick: function() {
+      if (this._queue.length == 0) {
+        this._finishedCallback();
+        return;
+      }
+      var job = this._queue.pop();
+      job();
+      setTimeout(this._tick.bind(this), 10);
+    },
+  };
+
+  var ContactItemView = Backbone.View.extend({
     tagName: "li",
     template: _.template($('#contact-list-tmpl').html()),
 
@@ -48,11 +72,6 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
     initialize: function() {
       this.$list = $('#contactsList');
       this.$details = $('#details');
-      this.list = new models.ContactsList();
-/*
-      this.list.on( 'add', this.addAll, this );
-      this.list.on( 'reset', this.addAll, this );
-      this.list.on( 'all', this.render, this );*/
     },
 
     render: function(event){
@@ -60,7 +79,7 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
     },
 
     addOne: function(contact) {
-      var view = new ContactView({model: contact, app: this});
+      var view = new ContactItemView({model: contact, app: this});
       this.$list.append(view.render().el);
     },
 
@@ -70,10 +89,18 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
     },
 
     populate: function() {
-
       var self = this;
       $.getJSON('assets/fakecontacts/fakecontacts.json', function(data) {
-        data.forEach(self.addData.bind(self));
+        var q = new TimeoutQueue();
+        data.forEach(function(aData) {
+          q.addJob(function() {
+            self.addData(aData);
+          });
+        });
+
+        q.start(function() {
+          console.log("ALL DONE");
+        });
         self.$list.selectable();
       });
 
