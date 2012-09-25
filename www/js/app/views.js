@@ -18,8 +18,12 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
         this._finishedCallback();
         return;
       }
-      var job = this._queue.pop();
-      job();
+      var startTime = new Date();
+      while((new Date() - startTime) < 50) {
+        var job = this._queue.pop();
+        if (job)
+          job();
+      }
       setTimeout(this._tick.bind(this), 10);
     },
   };
@@ -47,6 +51,31 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
     }
   });
 
+  var ContactListView = Backbone.View.extend({
+    tagName: "ol",
+    id: "contactsList",
+
+    initialize: function(args) {
+      this.list = args.list;
+      this.app = args.app;
+      this.list.on('change', this.render, this);
+    },
+
+    render: function(aCallback) {
+      var self = this;
+
+      $("#contactsListPane").append(self.$el);
+      var q = new TimeoutQueue();
+      this.list.each(function(aContact) {
+        q.addJob(function() {
+          self.$el.append(new ContactItemView({model: aContact,
+                                               app: self.app}).render().el);
+        });
+      });
+
+      q.start(aCallback);
+    },
+  });
 
   var DetailView = Backbone.View.extend({
     tagName: "span",
@@ -70,7 +99,6 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
     list: null,
 
     initialize: function() {
-      this.$list = $('#contactsList');
       this.$details = $('#details');
     },
 
@@ -78,33 +106,16 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
       return this; // recommended as this enables calls to be chained.
     },
 
-    addOne: function(contact) {
-      var view = new ContactItemView({model: contact, app: this});
-      this.$list.append(view.render().el);
-    },
-
-    addData: function(aData) {
-      var contact = new models.Contact(aData);
-      this.addOne(contact);
-    },
-
     populate: function() {
       var self = this;
       $.getJSON('assets/fakecontacts/fakecontacts.json', function(data) {
-        var q = new TimeoutQueue();
-        data.forEach(function(aData) {
-          q.addJob(function() {
-            self.addData(aData);
-          });
+        self.list = new models.ContactsList(data);
+        self.listView = new ContactListView({list: self.list,
+                                             app: self});
+        self.listView.render(function() {
+          self.listView.$el.selectable({filter: 'li', tolerance: 'fit'});
         });
-
-        q.start(function() {
-          console.log("ALL DONE");
-        });
-        self.$list.selectable();
       });
-
-      this.$list.empty();
     },
 
     showDetails: function(model) {

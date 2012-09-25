@@ -36,7 +36,9 @@ define(["backbone"], function(Backbone) {
 
   var ContactsList = Backbone.Collection.extend({
     model: Contact,
-    url: '/assets/fakecontacts/fakecontacts.json'
+    comparator: function(aContact) {
+      return aContact.get("name");
+    }
   });
 
   return {

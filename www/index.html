@@ -17,8 +17,6 @@
     </header>
 
     <div id="contactsListPane">
-      <ol id="contactsList">
-      </ol>
     </div>
     <div id="detailPane">
       <div id="details">
@@ -35,6 +33,7 @@
 
   <script id="contact-detail-tmpl" type="text/template">
     <dl class="contact-details">
+    <img src="imgs/contact-generic.png" />
     <dt>Name</dt> <dd><strong><span class="name"><%= name %></span></strong></dd>
     <dt>Email addresses</dt> <dd><span class="email"><% _.each(email, function(address, i) { %>
       <span class="address"><%= address %></span><% if (i < email.length - 1) { %>,<% } %>

@@ -67,7 +67,6 @@ body {
 .contact-list-item {
   padding: 10px;
   border-bottom: 1px solid #EEEEEE;
-  margin-bottom: 2px;
 }
 
 .ui-selected {
@@ -77,6 +76,10 @@ body {
 
 .ui-selecting {
   background: #6495ED;
+}
+
+.name {
+  font-size: 0.8em;
 }
 
 .avatar {
