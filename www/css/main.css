@@ -157,17 +157,27 @@ body {
 .awesome-field {
   padding: 5px;
   width: 600px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .contact-field {
   padding-bottom: 3px;
+  font-size: 0.9em;
 }
 
 .contact-field .label {
   margin-left: 175px;
   color: #888888;
-  font-size: 0.9em;
+}
+
+.contact-field .type {
+  color: #888888;
+  margin-left: 115px;
+}
+
+.contact-field .value {
+  color: black;
+  margin-left: 14px;
 }
 
 hr {

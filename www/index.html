@@ -44,6 +44,13 @@
                placeholder="Type in here to quickly add some contact information" />
       </div>
 
+      <% _.each(email, function(address, i) { %>
+      <div class="contact-field">
+        <span class="type">Home</span>
+        <span class="value"><%= address %></span>
+      </div>
+      <hr />
+      <% }); %>
       <div class="contact-field">
         <span class="label">Add Email</span>
       </div>
