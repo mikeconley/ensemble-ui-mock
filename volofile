@@ -17,7 +17,15 @@ define(function (require) {
                 d.resolve(v.spawn('node', ['tools/r.js', '-o', 'tools/build.js'], {
                     useConsole: !namedArgs.quiet
                 }));
-            }
+            },
+        },
+        deploy: {
+          run: function(d, v, namedArgs) {
+            d.resolve(v.spawn('rsync',
+              ['-avz', '--delete', '-e', 'ssh', 'www',
+               'mconley2@people.mozilla.com:~/public_html/ensemble-mock'],
+               {useConsole: !namedArgs.quiet}));
+          }
         }
     }
 });
