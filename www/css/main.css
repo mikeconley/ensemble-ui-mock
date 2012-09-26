@@ -43,14 +43,14 @@ body {
   padding-right: 25px;
 }
 
-#addContact {
+button {
   margin-left: 10px;
   padding: 3px;
   background: none;
   border: 1px solid #DEECFA;
 }
 
-#addContact:hover {
+button:hover {
   border: 1px solid rgba(23, 51, 78, 0.3);
   background: #EFFDFF;
 }

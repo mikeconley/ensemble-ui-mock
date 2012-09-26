@@ -1,4 +1,66 @@
-define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone, models) {
+define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($, _, Backbone, models) {
+
+ (function( $ ) {
+  $.widget( "ensemble.combobox", {
+    _create: function() {
+      var input = this.element,
+          self = this,
+          toggle = $("<span>")
+                   .addClass("combobox-toggle")
+                   .html("&#9660;")
+                   .insertAfter(input);
+
+      var list = $("<ol>").addClass("combobox-list");
+      var liNodes = this._processCollection(this.options.collection);
+      var firstNode = liNodes.shift();
+      list.append(firstNode, liNodes);
+
+      var popup = $("<div id=\"combobox-popup\">")
+                  .addClass("combobox-popup")
+                  .append(list)
+                  .hide()
+                  .appendTo($('body'));
+
+      toggle.click(function(aEvent) {
+        popup.toggle();
+      });
+
+      this.popup = popup;
+    },
+
+    _processCollection: function(aCollection) {
+      var self = this;
+      var result = [];
+      $.each(aCollection, function(aIndex, aItem) {
+        var li = $("<li>").addClass('combobox-selectable');
+        if (Array.isArray(aItem)) {
+          var sublist = $("<ol>").addClass("combobox-list");
+          sublist.append(self._processCollection(aItem).bind(self));
+          li.append(sublist);
+        } else {
+          li.text(aItem);
+        }
+
+        li.click(function(aEvent) {
+          self._trigger("selected", aEvent, li.text());
+        });
+
+        result.push(li);
+      });
+      return result;
+    },
+
+    _setOption: function(key, value) {
+    },
+
+    close: function() {
+      this.popup.hide();
+    },
+
+    destroy: function() {
+    }
+  });
+})( $ );
 
   var TimeoutQueue = function() {
     this._queue = [];
@@ -118,6 +180,16 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
           $("#search").combobox('close');
         },
       });
+
+      this.$addContact = $("#addContact");
+      this.$addContact.click(function(aEvent) {
+        alert("Sorry - this doesn't do anything yet.");
+      });
+
+      this.$feedback = $("#feedback");
+      this.$feedback.click(function(aEvent) {
+        window.open("https://docs.google.com/spreadsheet/viewform?formkey=dExDT01KTXQ1Z0w2bnJNN1k3c1VZYlE6MQ");
+      });
     },
 
     render: function(event){
@@ -131,15 +203,18 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
 
       searchWorker.addEventListener("message", function(e) {
         $("#contactsList").remove();
-        $("#spinner").hide();
         self.list = new models.ContactsList(e.data);
         self.listView = new ContactListView({list: self.list,
                                              app: self});
         self.listView.render(function() {
+          console.log("Hiding spinner.");
+          $("#spinner").hide();
+          console.log("Hidden");
           self.listView.$el.selectable({filter: 'li', tolerance: 'fit'});
         });
       });
 
+      console.log("Showing spinner.");
       $("#spinner").show();
       searchWorker.postMessage({cmd: 'init'});
 
