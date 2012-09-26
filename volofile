@@ -26,6 +26,14 @@ define(function (require) {
                'mconley2@people.mozilla.com:~/public_html/ensemble-mock'],
                {useConsole: !namedArgs.quiet}));
           }
+        },
+        stage: {
+          run: function(d, v, namedArgs) {
+            d.resolve(v.spawn('rsync',
+              ['-avz', '--delete', '-e', 'ssh', 'www',
+               'mconley2@people.mozilla.com:~/public_html/ensemble-mock-stage'],
+               {useConsole: !namedArgs.quiet}));
+          }
         }
     }
 });

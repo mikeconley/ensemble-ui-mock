@@ -166,18 +166,27 @@ button:hover {
 }
 
 .contact-field .label {
-  margin-left: 175px;
+  margin-left: 144px;
   color: #888888;
 }
 
 .contact-field .type {
   color: #888888;
-  margin-left: 115px;
+  margin-left: 83px;
 }
 
 .contact-field .value {
   color: black;
-  margin-left: 14px;
+  margin-left: 15px;
+}
+
+.contact-field .lone-value {
+  margin-left: 144px;
+  color: #000000;
+}
+
+.contact-field img {
+  margin-left: 10px;
 }
 
 hr {

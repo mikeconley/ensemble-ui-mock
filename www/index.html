@@ -52,48 +52,61 @@
 
       <% _.each(email, function(address, i) { %>
       <div class="contact-field">
+        <img src="imgs/email.png" />
         <span class="type">Home</span>
         <span class="value"><%= address %></span>
       </div>
       <hr />
       <% }); %>
       <div class="contact-field">
+        <img src="imgs/email.png" />
         <span class="label">Add Email</span>
       </div>
       <hr />
       <div class="contact-field">
+        <img src="imgs/im.png" />
         <span class="label">Add IM</span>
       </div>
       <hr />
       <div class="contact-field">
+        <img src="imgs/im.png" />
         <span class="label">Add Phone</span>
       </div>
       <hr />
+      <% _.each(category, function(category, i) { %>
       <div class="contact-field">
-        <span class="label">Add Email</span>
+        <img src="imgs/tag.png" />
+        <span class="lone-value"><%= category %></span>
       </div>
       <hr />
+      <% }); %>
       <div class="contact-field">
+        <img src="imgs/tag.png" />
         <span class="label">Add Tag</span>
       </div>
       <hr />
       <div class="contact-field">
+        <img src="imgs/map.png" />
         <span class="label">Add Address</span>
       </div>
       <hr />
       <div class="contact-field">
-        <span class="label">Add website</span>
+        <img src="imgs/url.png" />
+        <span class="label">Add Website</span>
       </div>
       <hr />
       <div class="contact-field">
+        <img src="imgs/email.png" />
         <span class="label">Add Date</span>
       </div>
       <hr />
       <div class="contact-field">
+        <img src="imgs/note.png" />
         <span class="label">Add Note</span>
       </div>
       <hr />
       <div class="contact-field">
+        <img src="imgs/other.png" />
         <span class="label">Add Custom</span>
       </div>
       <hr />
