@@ -188,3 +188,9 @@ hr {
   margin-left: 0;
   background: -moz-linear-gradient(left, #EEEEEE, transparent);
 }
+
+#spinner {
+  position: absolute;
+  top: 200px;
+  left: 115px;
+}

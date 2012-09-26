@@ -107,7 +107,7 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
           "Clients", "Toronto Office"
         ],
         selected: function(aEvent, aCategory) {
-          console.log("Searching for category: " + aCategory);
+          $("#spinner").show();
           if (aCategory == "All Contacts") {
             searchWorker.postMessage({cmd: 'searchForNameEmail',
                                       query: ""});
@@ -117,9 +117,6 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
           }
           $("#search").combobox('close');
         },
-      });
-
-      this.$search.bind("selected", function(aEvent, aCategory) {
       });
     },
 
@@ -134,6 +131,7 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
 
       searchWorker.addEventListener("message", function(e) {
         $("#contactsList").remove();
+        $("#spinner").hide();
         self.list = new models.ContactsList(e.data);
         self.listView = new ContactListView({list: self.list,
                                              app: self});
@@ -142,11 +140,13 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
         });
       });
 
+      $("#spinner").show();
       searchWorker.postMessage({cmd: 'init'});
 
       $("#search").keyup(function(aEvent) {
         if (aEvent.keyCode == 13) {
           var searchTerm = $("#search").val();
+          $("#spinner").show();
           searchWorker.postMessage({cmd: 'searchForNameEmail',
                                     query: searchTerm});
         }
