@@ -19,7 +19,7 @@ body {
 #contactsListPane {
   overflow: auto;
   position: absolute;
-  top: 42px;
+  top: 40px;
   left: 0px;
   right: 0px;
   width: 310px;
@@ -30,7 +30,7 @@ body {
 #detailPane {
   overflow: auto;
   position: absolute;
-  top: 42px;
+  top: 40px;
   left: 310px;
   bottom: 0px;
   right: 0px;
@@ -46,6 +46,13 @@ body {
 #addContact {
   margin-left: 10px;
   padding: 3px;
+  background: none;
+  border: 1px solid #DEECFA;
+}
+
+#addContact:hover {
+  border: 1px solid rgba(23, 51, 78, 0.3);
+  background: #EFFDFF;
 }
 
 #splitter {
@@ -72,12 +79,11 @@ body {
 }
 
 .ui-selected {
-  background: #6495ED;
-  color: white;
+  background: #C3DBFA;
 }
 
 .ui-selecting {
-  background: #6495ED;
+  background: #B2CAE0;
 }
 
 .name {
@@ -108,4 +114,67 @@ body {
 
 .combobox-list {
   list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.combobox-list li {
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.combobox-list li:hover {
+  background: #FFFFFF;
+}
+
+.contact-details {
+  margin: 0;
+  padding: 0;
+}
+
+.contact-header {
+  background: #C3DBFA;
+  margin: 0;
+  padding: 10px;
+  height: 150px;
+}
+
+.contact-body {
+  padding: 10px;
+}
+
+.contact-photo {
+  vertical-align: top;
+  float: left;
+  margin-right: 15px;
+}
+
+.contact-name {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.awesome-field {
+  padding: 5px;
+  width: 600px;
+  margin-bottom: 15px;
+}
+
+.contact-field {
+  padding-bottom: 3px;
+}
+
+.contact-field .label {
+  margin-left: 175px;
+  color: #888888;
+  font-size: 0.9em;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  width: 600px;
+  text-align: left;
+  margin-left: 0;
+  background: -moz-linear-gradient(left, #EEEEEE, transparent);
 }

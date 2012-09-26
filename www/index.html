@@ -33,13 +33,58 @@
   </script>
 
   <script id="contact-detail-tmpl" type="text/template">
-    <dl class="contact-details">
-    <img src="imgs/contact-generic.png" />
-    <dt>Name</dt> <dd><strong><span class="name"><%= name %></span></strong></dd>
-    <dt>Email addresses</dt> <dd><span class="email"><% _.each(email, function(address, i) { %>
-      <span class="address"><%= address %></span><% if (i < email.length - 1) { %>,<% } %>
-      <% }); %></span></dd>
-    </dl>
+    <div class="contact-details">
+      <div class="contact-header">
+        <img class="contact-photo" src="imgs/contact-generic.png" />
+        <div class="contact-name"><%= name %></div>
+      </div>
+
+      <div class="contact-body">
+        <input type="text" class="awesome-field"
+               placeholder="Type in here to quickly add some contact information" />
+      </div>
+
+      <div class="contact-field">
+        <span class="label">Add Email</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add IM</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add Phone</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add Email</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add Tag</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add Address</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add website</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add Date</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add Note</span>
+      </div>
+      <hr />
+      <div class="contact-field">
+        <span class="label">Add Custom</span>
+      </div>
+      <hr />
+    </div>
   </script>
 
 </html>
