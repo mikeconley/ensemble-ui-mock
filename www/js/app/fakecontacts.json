@@ -12,6 +12,7 @@
         "streetAddress": "Rua Lisete Fischer, 892"
       }
     ], 
+    "category": ["My Favourites"],
     "bday": "1974-03-11", 
     "email": [
       "LucasCastroAzevedo@teleworm.us"
@@ -697,6 +698,7 @@
         "streetAddress": "Rua Itatiaia, 1589"
       }
     ], 
+    "category": ["My Favourites"],
     "bday": "1945-04-05", 
     "email": [
       "JulietaOliveiraAlves@teleworm.us"
@@ -1102,6 +1104,7 @@
         "streetAddress": "Rua Valentim Magalh\u00e3es, 1201"
       }
     ], 
+    "category": ["My Favourites"],
     "bday": "1986-03-02", 
     "email": [
       "SamuelRodriguesCavalcanti@teleworm.us"
@@ -1458,7 +1461,8 @@
         "streetAddress": "4938 James Street"
       }
     ], 
-    "bday": "1938-05-13", 
+   "category": ["My Favourites"],
+   "bday": "1938-05-13", 
     "email": [
       "TanishaIWashington@teleworm.us"
     ], 
@@ -1603,6 +1607,7 @@
         "streetAddress": "3769 Venture Place"
       }
     ], 
+    "category": ["My Favourites"],
     "bday": "1945-04-28", 
     "email": [
       "JohnnieAOliver@teleworm.us"
@@ -2013,6 +2018,7 @@
       }
     ], 
     "bday": "1991-02-18", 
+    "category": ["My Favourites"],
     "email": [
       "LouisLouis@teleworm.us"
     ], 
@@ -2608,6 +2614,7 @@
       }
     ], 
     "bday": "1956-10-26", 
+    "category": ["My Favourites", "Baseball Team"],
     "email": [
       "AluecheMelndezHuerta@teleworm.us"
     ], 
@@ -2821,6 +2828,7 @@
         "streetAddress": "Bellavista, 18"
       }
     ], 
+    "category": ["My Favourites", "Baseball Team"],
     "bday": "1945-02-18", 
     "email": [
       "ClovisMalaveMedrano@teleworm.us"
@@ -4545,6 +4553,7 @@
         "streetAddress": "Avenida Alvina Fernandes Gameiro, 276"
       }
     ], 
+    "category": ["Toronto Office"],
     "bday": "1941-01-07", 
     "email": [
       "BeatrizSantosRodrigues@teleworm.us"
@@ -4584,6 +4593,7 @@
         "streetAddress": "Rua Abel Guimenez, 489"
       }
     ], 
+    "category": ["Toronto Office"],
     "bday": "1946-02-06", 
     "email": [
       "ManuelaFernandesRodrigues@teleworm.us"
@@ -4623,6 +4633,7 @@
         "streetAddress": "Rua Lauro Firmino da Silva, 1040"
       }
     ], 
+    "category": ["Clients"],
     "bday": "1941-02-14", 
     "email": [
       "LauraPintoCarvalho@teleworm.us"
@@ -4659,6 +4670,7 @@
         "streetAddress": "4075 Hott Street"
       }
     ], 
+    "category": ["Baseball Team"],
     "bday": "1945-05-26", 
     "familyName": [
       "\u5897\u5b50"
@@ -11041,6 +11053,7 @@
         "streetAddress": "C/ Manuel Iradier, 18"
       }
     ], 
+    "category": ["Baseball Team"],
     "bday": "1934-04-16", 
     "email": [
       "KarumantaRosadoOrellana@teleworm.us"
@@ -11257,6 +11270,7 @@
         "streetAddress": "3215 rue des \u00c9glises Est"
       }
     ], 
+    "category": ["Baseball Team"],
     "bday": "1957-08-12", 
     "email": [
       "CourtneyRCody@teleworm.us"
@@ -11327,6 +11341,7 @@
         "streetAddress": "54, Rue St Ferr\u00e9ol"
       }
     ], 
+    "category": ["Baseball Team", "Clients"],
     "bday": "1972-03-24", 
     "email": [
       "MarsiliusGuertin@teleworm.us"
@@ -11652,6 +11667,7 @@
         "streetAddress": "37, rue du Gue Jacquet"
       }
     ], 
+    "category": ["Clients"],
     "bday": "1972-01-13", 
     "email": [
       "ChapinGuertin@teleworm.us"
@@ -11936,6 +11952,7 @@
         "streetAddress": "Avda. General\u00edsimo, 96"
       }
     ], 
+    "category": ["Clients"],
     "bday": "1949-08-24", 
     "email": [
       "MarcSantillnGaytan@teleworm.us"
@@ -12041,6 +12058,7 @@
         "streetAddress": "Gotthardstrasse 83"
       }
     ], 
+    "category": ["Clients"],
     "bday": "1992-04-02", 
     "email": [
       "AndreasHertzog@teleworm.us"
@@ -12080,6 +12098,7 @@
         "streetAddress": "2544 St Marys Rd"
       }
     ], 
+    "category": ["Clients"],
     "bday": "1935-01-30", 
     "email": [
       "PaulCGomez@teleworm.us"
@@ -12119,6 +12138,7 @@
         "streetAddress": "Rua PLH 1, 343"
       }
     ], 
+    "category": ["Clients"],
     "bday": "1954-04-06", 
     "email": [
       "KauDiasFerreira@teleworm.us"
@@ -12837,6 +12857,7 @@
         "streetAddress": "Rua Guilherme Studart, 1967"
       }
     ], 
+    "category": ["Toronto Office"],
     "bday": "1972-07-27", 
     "email": [
       "DiogoSilvaDias@teleworm.us"
@@ -14220,6 +14241,7 @@
         "streetAddress": "C/ Rosa de los Vientos, 28"
       }
     ], 
+    "category": ["Clients"],
     "bday": "1943-06-28", 
     "email": [
       "EdanMayongaQuiroz@teleworm.us"

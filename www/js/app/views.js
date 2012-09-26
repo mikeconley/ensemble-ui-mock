@@ -105,7 +105,21 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
         collection: [
           "All Contacts", "My Favourites", "Baseball Team",
           "Clients", "Toronto Office"
-        ]
+        ],
+        selected: function(aEvent, aCategory) {
+          console.log("Searching for category: " + aCategory);
+          if (aCategory == "All Contacts") {
+            searchWorker.postMessage({cmd: 'searchForNameEmail',
+                                      query: ""});
+          } else {
+            searchWorker.postMessage({cmd: 'searchForCategory',
+                                      query: String(aCategory)});
+          }
+          $("#search").combobox('close');
+        },
+      });
+
+      this.$search.bind("selected", function(aEvent, aCategory) {
       });
     },
 
@@ -137,12 +151,6 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
                                     query: searchTerm});
         }
       });
-
-      setTimeout(function() {
-        console.log("FIRE");
-        searchWorker.postMessage({cmd: 'searchForNameEmail',
-                                  query: 'Al'});
-      }, 5000);
     },
 
     showDetails: function(model) {
