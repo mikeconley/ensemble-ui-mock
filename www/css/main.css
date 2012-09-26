@@ -38,11 +38,13 @@ body {
 
 #search {
   border: 1px solid rgba(23, 51, 78, 0.3);
-  width: 294px;
+  width: 275px;
   padding: 5px;
+  padding-right: 25px;
 }
 
 #addContact {
+  margin-left: 10px;
   padding: 3px;
 }
 
@@ -86,4 +88,24 @@ body {
   height: 25px;
   width: 25px;
   vertical-align: middle;
+}
+
+.combobox-toggle {
+  margin-left: -20px;
+  color: #585858;
+  cursor: pointer;
+}
+
+.combobox-popup {
+  position: fixed;
+  top: 35px;
+  left: 5px;
+  width: 305px;
+  height: 200px;
+  background: #EFEFEF;
+  border: 1px solid #AAAAAA;
+}
+
+.combobox-list {
+  list-style-type: none;
 }

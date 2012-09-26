@@ -100,6 +100,13 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
 
     initialize: function() {
       this.$details = $('#details');
+      this.$search = $("#search");
+      this.$search.combobox({
+        collection: [
+          "All Contacts", "My Favourites", "Baseball Team",
+          "Clients", "Toronto Office"
+        ]
+      });
     },
 
     render: function(event){
@@ -107,15 +114,35 @@ define(["jquery", "underscore", "backbone", "./models"], function($, _, Backbone
     },
 
     populate: function() {
+
       var self = this;
-      $.getJSON('assets/fakecontacts/fakecontacts.json', function(data) {
-        self.list = new models.ContactsList(data);
+      searchWorker = new Worker("js/app/searchWorker.js");
+
+      searchWorker.addEventListener("message", function(e) {
+        $("#contactsList").remove();
+        self.list = new models.ContactsList(e.data);
         self.listView = new ContactListView({list: self.list,
                                              app: self});
         self.listView.render(function() {
           self.listView.$el.selectable({filter: 'li', tolerance: 'fit'});
         });
       });
+
+      searchWorker.postMessage({cmd: 'init'});
+
+      $("#search").keyup(function(aEvent) {
+        if (aEvent.keyCode == 13) {
+          var searchTerm = $("#search").val();
+          searchWorker.postMessage({cmd: 'searchForNameEmail',
+                                    query: searchTerm});
+        }
+      });
+
+      setTimeout(function() {
+        console.log("FIRE");
+        searchWorker.postMessage({cmd: 'searchForNameEmail',
+                                  query: 'Al'});
+      }, 5000);
     },
 
     showDetails: function(model) {
