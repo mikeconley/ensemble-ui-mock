@@ -1,5 +1,4 @@
 define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($, _, Backbone, models) {
-
  (function( $ ) {
 
   _.mixin({
