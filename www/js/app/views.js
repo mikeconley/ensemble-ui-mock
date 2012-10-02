@@ -241,26 +241,40 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
 
       $("#search").keyup(function(aEvent) {
         if (aEvent.keyCode == 13) {
-          var searchTerm = $("#search").val();
-          $("#spinner").show();
-          if (searchTerm.indexOf("tag:") != -1) {
-            var regex = /tag:([a-z\-]+)/g;
-            var matches = regex.exec(searchTerm);
-            var category = matches[1];
-            var rest = searchTerm.replace(matches[0], '').trim();
-            console.log("Category: " + category);
-            console.log("Rest: " + rest);
-            searchWorker.postMessage({cmd: 'searchForNameEmailInCategory',
-                                      msg: {
-                                        category: category,
-                                        query: rest
-                                      }});
-          } else {
-            searchWorker.postMessage({cmd: 'searchForNameEmail',
-                                      query: searchTerm});
-          }
+          if (this._timeoutID)
+            clearTimeout(this._timeoutID);
+          doSearch();
+        } else {
+          self.scheduleSearch();
         }
       });
+    },
+
+    scheduleSearch: function() {
+      if (this._timeoutID)
+        clearTimeout(this._timeoutID);
+      this.timeoutID = setTimeout(this.doSearch, 100);
+    },
+
+    doSearch: function() {
+      var searchTerm = $("#search").val();
+      $("#spinner").show();
+      if (searchTerm.indexOf("tag:") != -1) {
+        var regex = /tag:([a-z\-]+)/g;
+        var matches = regex.exec(searchTerm);
+        var category = matches[1];
+        var rest = searchTerm.replace(matches[0], '').trim();
+        console.log("Category: " + category);
+        console.log("Rest: " + rest);
+        searchWorker.postMessage({cmd: 'searchForNameEmailInCategory',
+                                  msg: {
+                                    category: category,
+                                    query: rest
+                                  }});
+      } else {
+        searchWorker.postMessage({cmd: 'searchForNameEmail',
+                                  query: searchTerm});
+      }
     },
 
     showDetails: function(model) {
