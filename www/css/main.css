@@ -81,7 +81,7 @@ button:hover {
 }
 
 button::-moz-focus-inner {
-  border: 1px solid transparent;
+  border: 0px solid transparent;
 }
 
 #splitter {
@@ -134,7 +134,8 @@ button::-moz-focus-inner {
   border: 1px solid rgba(23, 51, 78, 0.3);
   border-left-color: #787878;
   width: 35px;
-  height: 29px;
+  padding: 5px;
+  padding-bottom: 3px;
 }
 
 .combobox-toggle img {

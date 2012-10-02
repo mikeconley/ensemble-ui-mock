@@ -59,6 +59,9 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
           } else {
             self.element.val('');
           }
+          self.element[0].selectionStart = self.element.val().length;
+          self.element[0].selectionEnd = self.element.val().length;
+          self.element.focus();
         });
 
         result.push(li);
