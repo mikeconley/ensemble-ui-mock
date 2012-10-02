@@ -55,7 +55,7 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
         li.click(function(aEvent) {
           self._trigger("selected", aEvent, li.text());
           if (li.text() != "All Contacts") {
-            self.element.val("tag:" + _.lowercaseDasherize(li.text()));
+            self.element.val("tag:" + _.lowercaseDasherize(li.text()) + " ");
           } else {
             self.element.val('');
           }
