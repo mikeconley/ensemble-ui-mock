@@ -20,6 +20,10 @@
       </div>
     </header>
 
+    <div id="contactsListSorter">
+      Name
+      <div id="sortDirection">&#9660;</div>
+    </div>
     <div id="contactsListPane">
     </div>
     <div id="detailPane">
@@ -34,7 +38,7 @@
   <script id="contact-list-tmpl" type="text/template">
     <div class="contact-list-item">
       <img class="avatar" src="imgs/contact-generic.png" />
-      <strong><span class="name"><%= name %></span></strong>
+      <span class="name"><%= name %></span>
     </div>
   </script>
 
@@ -56,60 +60,7 @@
         <span class="type">Home</span>
         <span class="value"><%= address %></span>
       </div>
-      <hr />
       <% }); %>
-      <div class="contact-field">
-        <img src="imgs/email.png" />
-        <span class="label">Add Email</span>
-      </div>
-      <hr />
-      <div class="contact-field">
-        <img src="imgs/im.png" />
-        <span class="label">Add IM</span>
-      </div>
-      <hr />
-      <div class="contact-field">
-        <img src="imgs/im.png" />
-        <span class="label">Add Phone</span>
-      </div>
-      <hr />
-      <% _.each(category, function(category, i) { %>
-      <div class="contact-field">
-        <img src="imgs/tag.png" />
-        <span class="lone-value"><%= category %></span>
-      </div>
-      <hr />
-      <% }); %>
-      <div class="contact-field">
-        <img src="imgs/tag.png" />
-        <span class="label">Add Tag</span>
-      </div>
-      <hr />
-      <div class="contact-field">
-        <img src="imgs/map.png" />
-        <span class="label">Add Address</span>
-      </div>
-      <hr />
-      <div class="contact-field">
-        <img src="imgs/url.png" />
-        <span class="label">Add Website</span>
-      </div>
-      <hr />
-      <div class="contact-field">
-        <img src="imgs/email.png" />
-        <span class="label">Add Date</span>
-      </div>
-      <hr />
-      <div class="contact-field">
-        <img src="imgs/note.png" />
-        <span class="label">Add Note</span>
-      </div>
-      <hr />
-      <div class="contact-field">
-        <img src="imgs/other.png" />
-        <span class="label">Add Custom</span>
-      </div>
-      <hr />
     </div>
   </script>
 

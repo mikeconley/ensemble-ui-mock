@@ -1,5 +1,11 @@
 var collection = null;
 
+function lowercaseDasherize(aString) {
+  return aString.toLowerCase()
+                .replace(/[^\w\s]/g, '')
+                .replace(/[\s]/g, '-');
+}
+
 addEventListener('message', function(aEvent) {
   var data = aEvent.data
   switch (data.cmd) {
@@ -49,25 +55,33 @@ function emitSimpleSearchResults(aQuery) {
   postMessage(results);
 }
 
-function emitCategoryResults(aCategory) {
+function emitCategoryResults(aCategorySearch) {
   var results = [];
   collection.forEach(function(aItem) {
-    if (aItem.category && aItem.category.indexOf(aCategory) != -1)
-      results.push(aItem);
+    if (aItem.category) {
+      aItem.category.forEach(function(aCategory) {
+        if (lowercaseDasherize(aCategory) == aCategorySearch) {
+          results.push(aItem);
+        }
+      });
+    }
   });
   postMessage(results);
 }
 
-function emitCategorySearchResults(aCategory, aQuery) {
+function emitCategorySearchResults(aCategorySearch, aQuery) {
   var results = [];
+  aQuery = aQuery.toLowerCase();
   collection.forEach(function(aItem) {
-    if (aItem.categories.indexOf(aCategory) != -1) {
-      var nameString = String(aItem.name);
-      var emailString = String(aItem.email);
-      if (nameString.indexOf(aQuery) != -1 ||
-          emailString.indexOf(aQuery) != -1) {
-        results.push(aItem);
-      }
+    if (aItem.category) {
+      var nameString = String(aItem.name).toLowerCase();
+      var emailString = String(aItem.email).toLowerCase();;
+      aItem.category.forEach(function(aCategory) {
+        if (lowercaseDasherize(aCategory) == aCategorySearch &&
+            (nameString.indexOf(aQuery) != -1 ||
+             emailString.indexOf(aQuery) != -1))
+          results.push(aItem);
+      });
     }
   });
 
