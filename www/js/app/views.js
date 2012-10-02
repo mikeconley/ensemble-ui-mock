@@ -207,7 +207,9 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
 
       this.$feedback = $("#feedback");
       this.$feedback.click(function(aEvent) {
-        window.open("https://docs.google.com/spreadsheet/viewform?formkey=dExDT01KTXQ1Z0w2bnJNN1k3c1VZYlE6MQ");
+        const kFeedback = "https://docs.google.com/spreadsheet/viewform?formkey=dHY5NlFkSzdXSFl3VVRwQmdSRjNycEE6MQ";
+
+        window.open(kFeedback);
       });
     },
 
