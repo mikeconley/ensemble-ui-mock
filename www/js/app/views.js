@@ -178,28 +178,18 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
   var AppView = Backbone.View.extend({
     el: '#content',
     list: null,
+    tagSelectorOpened: false,
 
     initialize: function() {
       this.$details = $('#details');
       this.$search = $("#search");
-      this.$search.combobox({
-        collection: [
-          "All Contacts", "My Favourites", "Baseball Team",
-          "Clients", "Toronto Office"
-        ],
-        selected: function(aEvent, aCategory) {
-          $("#spinner").show();
-          if (aCategory == "All Contacts") {
-            searchWorker.postMessage({cmd: 'searchForNameEmail',
-                                      query: ""});
-          } else {
-            searchWorker.postMessage({cmd: 'searchForCategory',
-                                      query: _.lowercaseDasherize(String(aCategory))});
-          }
-          $("#search").combobox('close');
-        },
-      });
-
+      $("#tagSelector").click(function(aEvent) {
+        this.toggleTagSelector(!this._tagSelectorOpened);
+        this._tagSelectorOpened = !this._tagSelectorOpened;
+        aEvent.preventDefault();
+        aEvent.stopPropagation();
+        return false;
+      }.bind(this));
       this.$addContact = $("#addContact");
       this.$addContact.click(function(aEvent) {
         alert("Sorry - this doesn't do anything yet.");
@@ -211,10 +201,37 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
 
         window.open(kFeedback);
       });
+
+      var self = this;
+      $("#tagList li").click(function(aEvent) {
+        $("#selectedTag").text($(this).text());
+        self.doSearch();
+      });
+
     },
 
     render: function(event){
       return this; // recommended as this enables calls to be chained.
+    },
+
+    toggleTagSelector: function(shouldExpand) {
+      const kSpeed = 100;
+      if (shouldExpand) {
+        $("#tagSelector").animate({height: "190px"}, kSpeed, function() {
+          $("#tagList").show();
+          $("#arrow").hide();
+          $("#selectedTag").hide();
+        });
+        $("#contactsListSorter").animate({top: "240px"}, kSpeed);
+        $("#contactsListPane").animate({top: "259px"}, kSpeed);
+      } else {
+        $("#tagList").hide();
+        $("#selectedTag").show();
+        $("#arrow").show();
+        $("#tagSelector").animate({height: "30px"}, kSpeed);
+        $("#contactsListSorter").animate({top: "71px"}, kSpeed);
+        $("#contactsListPane").animate({top: "90px"}, kSpeed);
+      }
     },
 
     populate: function() {
@@ -256,20 +273,16 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
       this.timeoutID = setTimeout(this.doSearch, 100);
     },
 
-    doSearch: function() {
+    doSearch: function(aCategory) {
       var searchTerm = $("#search").val();
+      var category = $("#selectedTag").text();
       $("#spinner").show();
-      if (searchTerm.indexOf("tag:") != -1) {
-        var regex = /tag:([a-z\-]+)/g;
-        var matches = regex.exec(searchTerm);
-        var category = matches[1];
-        var rest = searchTerm.replace(matches[0], '').trim();
-        console.log("Category: " + category);
-        console.log("Rest: " + rest);
+      if (category != "All Contacts") {
+        category = _.lowercaseDasherize(category);
         searchWorker.postMessage({cmd: 'searchForNameEmailInCategory',
                                   msg: {
                                     category: category,
-                                    query: rest
+                                    query: searchTerm
                                   }});
       } else {
         searchWorker.postMessage({cmd: 'searchForNameEmail',

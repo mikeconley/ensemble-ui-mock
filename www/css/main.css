@@ -17,14 +17,13 @@ body {
 }
 
 #contactsListSorter {
-  display: none;
   position: absolute;
-  top: 39px;
+  top: 71px;
   left: 0px;
-  width: 389px;
+  width: 489px;
   background-image: -moz-linear-gradient(top, #FFFFFF, #DDDDDD);
   border: 1px solid #CCCCCC;
-  border-top: 1px solid transparent;
+  border-top: 1px solid #888888;
   padding-left: 10px;
   padding-top: 2px;
   font-size: 0.7em;
@@ -34,7 +33,7 @@ body {
 
 #sortDirection {
   display: inline-block;
-  margin-left: 250px;
+  margin-left: 210px;
   padding-left: 70px;
   border-left: 1px solid #CCCCCC;
   color: #888888;
@@ -44,10 +43,10 @@ body {
 #contactsListPane {
   overflow: auto;
   position: absolute;
-  top: 40px;
+  top: 90px;
   left: 0px;
   right: 0px;
-  width: 400px;
+  width: 500px;
   bottom: 0px;
   border-right: 1px solid #DDDDDD;
 }
@@ -56,16 +55,35 @@ body {
   overflow: auto;
   position: absolute;
   top: 40px;
-  left: 400px;
+  left: 500px;
   bottom: 0px;
   right: 0px;
 }
 
 #search {
   border: 1px solid rgba(23, 51, 78, 0.3);
-  width: 330px;
+  width: 350px;
   padding: 5px;
   padding-right: 25px;
+}
+
+#tagList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 14px;
+}
+
+#tagSelector {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  width: 490px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: #EFEFEF;
+  height: 30px;
 }
 
 button {
