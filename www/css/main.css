@@ -72,6 +72,7 @@ body {
   margin: 0;
   padding: 0;
   padding-left: 14px;
+  cursor: pointer;
 }
 
 #tagSelector {
@@ -84,13 +85,18 @@ body {
   padding-bottom: 5px;
   background: #EFEFEF;
   height: 30px;
-}
-
-#tagSelector li {
   cursor: pointer;
 }
 
-#tagSelector li:hover {
+#tagSelector:hover {
+  background: #FAFAFA;
+}
+
+#tagList li {
+  cursor: pointer;
+}
+
+#tagList li:hover {
   background: #AAAAAA;
 }
 
@@ -150,48 +156,6 @@ button::-moz-focus-inner {
   height: 25px;
   width: 25px;
   vertical-align: middle;
-}
-
-.combobox-toggle {
-  background-image: -moz-linear-gradient(top, #FFFFFF, #DDDDDD);
-  margin-left: -1px;
-  margin-top: -1px;
-  cursor: pointer;
-  border: 1px solid rgba(23, 51, 78, 0.3);
-  border-left-color: #787878;
-  width: 35px;
-  padding: 5px;
-  padding-bottom: 3px;
-}
-
-.combobox-toggle img {
-  vertical-align: middle;
-  text-align: center;
-}
-
-.combobox-popup {
-  position: fixed;
-  top: 33px;
-  left: 5px;
-  width: 394px;
-  height: 200px;
-  background: #EFEFEF;
-  border: 1px solid #AAAAAA;
-}
-
-.combobox-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 10px;
-}
-
-.combobox-list li {
-  cursor: pointer;
-  padding-left: 10px;
-}
-
-.combobox-list li:hover {
-  background: #FFFFFF;
 }
 
 .contact-details {
