@@ -20,6 +20,7 @@ define(function (require) {
             },
         },
         deploy: {
+          depends: ['build'],
           run: function(d, v, namedArgs) {
             d.resolve(v.spawn('rsync',
               ['-avz', '--delete', '-e', 'ssh', 'www',
@@ -28,6 +29,7 @@ define(function (require) {
           }
         },
         stage: {
+          depends: ['build'],
           run: function(d, v, namedArgs) {
             d.resolve(v.spawn('rsync',
               ['-avz', '--delete', '-e', 'ssh', 'www',

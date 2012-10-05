@@ -71,8 +71,8 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-left: 14px;
   cursor: pointer;
+/*  padding-left: 18px;*/
 }
 
 #tagSelector {
@@ -98,6 +98,13 @@ body {
 
 #tagList li:hover {
   background: #AAAAAA;
+}
+
+#arrow {
+  margin-left: 10px;
+  color: #555555;
+  font-size: 0.8em;
+  margin-bottom: 5px;
 }
 
 button {
