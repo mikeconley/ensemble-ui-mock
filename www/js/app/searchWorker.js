@@ -59,11 +59,9 @@ function emitCategoryResults(aCategorySearch) {
   var results = [];
   collection.forEach(function(aItem) {
     if (aItem.category) {
-      aItem.category.forEach(function(aCategory) {
-        if (lowercaseDasherize(aCategory) == aCategorySearch) {
-          results.push(aItem);
-        }
-      });
+      if (aItem.category.indexOf(aCategorySearch) != -1) {
+        results.push(aItem);
+      }
     }
   });
   postMessage(results);
@@ -76,12 +74,11 @@ function emitCategorySearchResults(aCategorySearch, aQuery) {
     if (aItem.category) {
       var nameString = String(aItem.name).toLowerCase();
       var emailString = String(aItem.email).toLowerCase();;
-      aItem.category.forEach(function(aCategory) {
-        if (lowercaseDasherize(aCategory) == aCategorySearch &&
-            (nameString.indexOf(aQuery) != -1 ||
-             emailString.indexOf(aQuery) != -1))
-          results.push(aItem);
-      });
+      if (aItem.category.indexOf(aCategorySearch) != -1 &&
+          (nameString.indexOf(aQuery) != -1 ||
+           emailString.indexOf(aQuery) != -1)) {
+        results.push(aItem);
+      }
     }
   });
 

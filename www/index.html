@@ -12,9 +12,7 @@
   <body>
     <header id="toolbar">
       <input id="search" type="text" placeholder="Search your contacts" />
-      <button id="addContact">
-        Add Contact
-      </button>
+      <span id="wipeSearch" style="display:none;">&#215;</span>
       <button id="feedback">
         Give me feedback!
       </button>
@@ -24,13 +22,16 @@
     </header>
 
     <div id="tagSelector">
-      <span id="selectedTag">All Contacts</span><span id="arrow">&#9660;</span>
+      <span id="selectedTag" data-id="">All Contacts</span><span id="arrow">&#9660;</span>
       <ol id="tagList" style="display:none;">
-        <li>All Contacts</li>
-        <li>My Favourites</li>
-        <li>Baseball Team</li>
-        <li>Clients</li>
-        <li>Toronto Office</li>
+        <li id="topSpot" data-id="">All Contacts</li>
+        <li data-id="" style="display:none;">All Contacts</li>
+        <li data-id="my-favourites">My Favourites</li>
+        <li data-id="baseball-team">Baseball Team</li>
+        <li data-id="clients">Clients</li>
+        <li data-id="toronto-office">Toronto Office</li>
+        <li data-id="system-address-book">System Address Book</li>
+        <li data-id="system-address-book-family"><span class="parent">System Address Book /</span> Family</li>
       </ol>
     </div>
     <div id="contactsListSorter">
@@ -38,6 +39,17 @@
       <div id="sortDirection">&#9660;</div>
     </div>
     <div id="contactsListPane">
+    </div>
+    <div id="noResults" style="display:none;">
+      No results for "<span id="noResultsFor"></span>".
+    </div>
+    <div id="addRemove">
+      <button id="addContact">
+        Add
+      </button>
+      <button id="removeContact">
+        Remove
+      </button>
     </div>
     <div id="detailPane">
       <div id="details">

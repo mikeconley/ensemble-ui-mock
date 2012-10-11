@@ -17,6 +17,7 @@ body {
 }
 
 #contactsListSorter {
+  cursor: pointer;
   position: absolute;
   top: 71px;
   left: 0px;
@@ -47,9 +48,41 @@ body {
   left: 0px;
   right: 0px;
   width: 500px;
-  bottom: 0px;
+  bottom: 60px;
   border-right: 1px solid #DDDDDD;
 }
+
+#addRemove {
+  position: absolute;
+  height: 60px;
+  width: 500px;
+  top: auto;
+  bottom: 0px;
+  border-top: 1px solid #DDDDDD;
+  border-right: 1px solid #DDDDDD;
+  left: 0px;
+  background: #FCFCFC;
+  text-align: center;
+}
+
+#addRemove button {
+  margin-top: 15px;
+  padding: 3px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
+  background-color: rgba(231, 237, 242, 0.2);
+  min-width: 90px;
+  border: 1px solid rgba(23, 51, 78, 0.2);
+}
+
+#addRemove button:hover {
+  border: 1px solid rgba(23, 51, 78, 0.4);
+  background: rgba(239, 244, 249, 0.75);
+}
+
+#addRemove button::-moz-focus-inner {
+  border: 0px solid transparent;
+}
+
 
 #detailPane {
   overflow: auto;
@@ -62,9 +95,16 @@ body {
 
 #search {
   border: 1px solid rgba(23, 51, 78, 0.3);
-  width: 350px;
+  width: 464px;
   padding: 5px;
   padding-right: 25px;
+}
+
+#wipeSearch {
+  position: absolute;
+  top: 8px;
+  left: 480px;
+  cursor: pointer;
 }
 
 #tagList {
@@ -73,6 +113,10 @@ body {
   padding: 0;
   cursor: pointer;
 /*  padding-left: 18px;*/
+}
+
+.parent {
+  color: #999999;
 }
 
 #tagSelector {
@@ -86,6 +130,7 @@ body {
   background: #EFEFEF;
   height: 30px;
   cursor: pointer;
+  border-right: 1px solid #DDDDDD;
 }
 
 #tagSelector:hover {
@@ -107,19 +152,19 @@ body {
   margin-bottom: 5px;
 }
 
-button {
+#toolbar button {
   margin-left: 10px;
   padding: 3px;
   background: none;
   border: 1px solid #DEECFA;
 }
 
-button:hover {
+#toolbar button:hover {
   border: 1px solid rgba(23, 51, 78, 0.3);
   background: #EFFDFF;
 }
 
-button::-moz-focus-inner {
+#toolbar button::-moz-focus-inner {
   border: 0px solid transparent;
 }
 
@@ -233,6 +278,16 @@ hr {
   text-align: left;
   margin-left: 0;
   background: -moz-linear-gradient(left, #EEEEEE, transparent);
+}
+
+#noResults {
+  text-align: center;
+  position: absolute;
+  top: 200px;
+  left: 15px;
+  width: 400px;
+  padding: 5px;
+  font-size: 0.9em;
 }
 
 #spinner {

@@ -1,85 +1,4 @@
 define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($, _, Backbone, models) {
- (function( $ ) {
-
-  _.mixin({
-    lowercaseDasherize: function(aString) {
-      return aString.toLowerCase()
-                    .replace(/[^\w\s]/g, '')
-                    .replace(/[\s]/g, '-');
-    },
-  });
-
-  $.widget( "ensemble.combobox", {
-    _create: function() {
-      var input = this.element,
-          self = this,
-          toggle = $("<button>")
-                   .addClass("combobox-toggle")
-                   .insertAfter(input);
-      var img = $("<img>")
-                .attr("src", "imgs/tag.png")
-                .appendTo(toggle);
-
-      var list = $("<ol>").addClass("combobox-list");
-      var liNodes = this._processCollection(this.options.collection);
-      var firstNode = liNodes.shift();
-      list.append(firstNode, liNodes);
-
-      var popup = $("<div id=\"combobox-popup\">")
-                  .addClass("combobox-popup")
-                  .append(list)
-                  .hide()
-                  .appendTo($('body'));
-
-      toggle.click(function(aEvent) {
-        popup.toggle();
-        return true;
-      });
-
-      this.popup = popup;
-    },
-
-    _processCollection: function(aCollection) {
-      var self = this;
-      var result = [];
-      $.each(aCollection, function(aIndex, aItem) {
-        var li = $("<li>").addClass('combobox-selectable');
-        if (Array.isArray(aItem)) {
-          var sublist = $("<ol>").addClass("combobox-list");
-          sublist.append(self._processCollection(aItem).bind(self));
-          li.append(sublist);
-        } else {
-          li.text(aItem);
-        }
-
-        li.click(function(aEvent) {
-          self._trigger("selected", aEvent, li.text());
-          if (li.text() != "All Contacts") {
-            self.element.val("tag:" + _.lowercaseDasherize(li.text()) + " ");
-          } else {
-            self.element.val('');
-          }
-          self.element[0].selectionStart = self.element.val().length;
-          self.element[0].selectionEnd = self.element.val().length;
-          self.element.focus();
-        });
-
-        result.push(li);
-      });
-      return result;
-    },
-
-    _setOption: function(key, value) {
-    },
-
-    close: function() {
-      this.popup.hide();
-    },
-
-    destroy: function() {
-    }
-  });
-})( $ );
 
   var TimeoutQueue = function() {
     this._queue = [];
@@ -190,9 +109,9 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
         aEvent.stopPropagation();
         return false;
       }.bind(this));
-      this.$addContact = $("#addContact");
-      this.$addContact.click(function(aEvent) {
-        alert("Sorry - this doesn't do anything yet.");
+      $("#addContact, #removeContact, #contactsListSorter").click(
+        function(aEvent) {
+          alert("Sorry - this doesn't do anything yet.");
       });
 
       this.$feedback = $("#feedback");
@@ -204,7 +123,24 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
 
       var self = this;
       $("#tagList li").click(function(aEvent) {
-        $("#selectedTag").text($(this).text());
+        if ($(this).attr("id") != "topSpot") {
+          $("#tagList li").show();
+          $("#topSpot").data("id", $(this).data("id"));
+          $("#topSpot").html($(this).html());
+
+          $(this).hide();
+          $("#selectedTag").html($(this).html());
+          $("#selectedTag").data("id", $(this).data("id"));
+
+          self.doSearch();
+        } else {
+          self.toggleTagSelector(false);
+        }
+      });
+
+      $("#wipeSearch").click(function(aEvent) {
+        $("#search").val("");
+        $("#wipeSearch").hide();
         self.doSearch();
       });
 
@@ -241,13 +177,18 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
 
       searchWorker.addEventListener("message", function(e) {
         $("#contactsList").remove();
+        if (e.data.length == 0) {
+          console.log("NO RESULTS");
+          $("#noResultsFor").text($("#search").val());
+          $("#noResults").show();
+        } else {
+          $("#noResults").hide();
+        }
         self.list = new models.ContactsList(e.data);
         self.listView = new ContactListView({list: self.list,
                                              app: self});
         self.listView.render(function() {
-          console.log("Hiding spinner.");
           $("#spinner").hide();
-          console.log("Hidden");
           self.listView.$el.selectable({filter: 'li', tolerance: 'fit'});
         });
       });
@@ -262,6 +203,10 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
             clearTimeout(this._timeoutID);
           doSearch();
         } else {
+          if ($("#search").val() != "")
+            $("#wipeSearch").show();
+          else
+            $("#wipeSearch").hide();
           self.scheduleSearch();
         }
       });
@@ -275,13 +220,13 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
 
     doSearch: function(aCategory) {
       var searchTerm = $("#search").val();
-      var category = $("#selectedTag").text();
+      var categoryId = $("#selectedTag").data("id");
       $("#spinner").show();
-      if (category != "All Contacts") {
-        category = _.lowercaseDasherize(category);
+      if (categoryId != "") {
+        console.log("Looking for " + categoryId);
         searchWorker.postMessage({cmd: 'searchForNameEmailInCategory',
                                   msg: {
-                                    category: category,
+                                    category: categoryId,
                                     query: searchTerm
                                   }});
       } else {
