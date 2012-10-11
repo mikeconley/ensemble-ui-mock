@@ -116,7 +116,7 @@ define(["jquery", "underscore", "backbone", "./models", "jquery-ui"], function($
 
       this.$feedback = $("#feedback");
       this.$feedback.click(function(aEvent) {
-        const kFeedback = "https://docs.google.com/spreadsheet/viewform?formkey=dHY5NlFkSzdXSFl3VVRwQmdSRjNycEE6MQ";
+        const kFeedback = "https://docs.google.com/spreadsheet/viewform?formkey=dGJ5M1Uybk9sYlE0bmxMckhmaHpZQWc6MQ";
 
         window.open(kFeedback);
       });
